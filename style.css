@@ -1,0 +1,485 @@
+body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    display: grid;
+    grid-template-columns: 1fr 5fr;
+    background-color: #f5f5f5;
+    color: #4d4d4d;
+}
+
+.sidebar {
+    padding: 1rem;
+    margin-right: 1.25rem;
+    background-color: #f2f3f5;
+}
+
+.sidebar_header h1 {
+    font-size: 1.7rem;
+    font-weight: 300;
+    margin: 0;
+}
+
+.sidebar_header h3 {
+    margin: 0.3rem 0 0.3rem;
+    font-weight: normal;
+    font-size: 0.9rem;
+}
+
+.sidebar_header a {
+    color: #b83f45;
+    text-decoration: none;
+    font-size: 0.9rem;
+}
+
+.sidebar_content {
+    border-top: 1px dashed #ccc;
+    border-bottom: 1px dashed #ccc;
+    padding: 1.5rem 0;
+    margin: 1.25rem 0;
+}
+
+.sidebar_text {
+    background-color: white;
+    padding: 1rem;
+    border-radius: 0.25rem;
+    position: relative;
+    font-size: 0.9375rem;
+    line-height: 1.5;
+    font-style: italic;
+    margin-bottom: 1.25rem;
+}
+
+.sidebar_icon_up {
+    position: absolute;
+    top: 0;
+    left: 0.6rem;
+    font-size: 2.5rem;
+    color: #d1d1d1;
+    font-family: serif;
+    line-height: 1;
+    z-index: 1;
+}
+
+.sidebar_icon_bottom {
+    position: absolute;
+    bottom: -0.6rem;
+    right: 0.6rem;
+    font-size: 2.5rem;
+    color: #d1d1d1;
+    font-family: serif;
+    line-height: 1;
+    z-index: 1;
+}
+
+.sidebar_text p {
+    margin: 0;
+    position: relative;
+    z-index: 2;
+    padding: 0.5rem 0;
+}
+
+.sidebar_author {
+    text-align: right;
+    margin-top: 0.6rem;
+}
+
+.sidebar_author a {
+    color: #b83f45;
+    text-decoration: none;
+    font-size: 1rem;
+}
+
+.sidebar_author a:hover, .sidebar_header a:hover, .sidebar_footer a:hover {
+    text-decoration: underline;
+}
+
+.sidebar_footer p {
+    font-size: 0.8rem;
+    line-height: 1.4;
+    margin-bottom: 0.5rem;
+}
+
+.sidebar_footer a {
+    color: #b83f45;
+    text-decoration: none;
+}
+
+.sidebar_footer_links a {
+    font-size: 1rem;
+    font-weight: 300;
+    display: block;
+    margin-top: 0.5rem;
+}
+
+.main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 1rem;
+}
+
+button {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background: none;
+    font-size: 100%;
+    font-family: inherit;
+    color: inherit;
+    appearance: none;
+}
+
+.todoapp {
+    width: 38rem;
+    margin-bottom: 2.5rem;
+    position: relative;
+}
+
+.todoapp h1 {
+    width: 100%;
+    font-size: 6.25rem;
+    font-weight: 100;
+    text-align: center;
+    color: #af2f2f;
+    margin: 0 0 1.25rem 0;
+    line-height: 1;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    background: #fff;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    border-bottom: 1px solid #ededed;
+    position: relative;
+    z-index: 2;
+}
+
+.toggle_all {
+    opacity: 0;
+    position: absolute;
+    width: 0;
+    height: 0;
+}
+
+.header label {
+    font-size: 1.40rem;
+    color: #e6e6e6;
+    padding: 0.65rem 1.70rem;
+    transform: rotate(90deg);
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+.toggle_all:checked + label {
+    color: #737373;
+}
+
+.new_todo {
+    padding: 1rem 1rem 1rem 0;
+    border: none;
+    background: transparent;
+    width: 100%;
+    font-size: 1.5rem;
+    font-style: italic;
+    color: inherit;
+    outline: none;
+    flex-grow: 1;
+}
+
+.new_todo:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+.header:focus-within {
+    box-shadow: 0 0 2px 2px #cf7d7d, 0 2px 8px rgba(0, 0, 0, 0.08);
+    z-index: 10;
+}
+
+.new_todo::placeholder {
+    color: #b9b9b9;
+    font-style: italic;
+    font-weight: 300;
+}
+
+.main_content {
+    display: none;
+    background-color: #fff;
+    border-top: 1px solid #e6e6e6;
+}
+
+.todo_list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.todo_list li {
+    font-size: 1.5rem;
+    border-bottom: 1px solid #ededed;
+}
+
+.todo_list li.selected {
+    border: 2px solid #cf7d7d !important;
+    background-color: transparent;
+    box-sizing: border-box;
+    z-index: 10;
+}
+
+.todo_list li:last-child {
+    border-bottom: none;
+}
+
+.todo_list li .view {
+    display: flex;
+    align-items: center;
+    min-height: 3.65rem;
+    padding-left: 0.65rem;
+    padding-right: 0.65rem;
+}
+
+.todo_list .toggle {
+    appearance: none;
+    -webkit-appearance: none;
+    height: 1.90rem;
+    width: 1.90rem;
+    border: 1px solid #ededed;
+    border-radius: 50%;
+    outline: none;
+    cursor: pointer;
+    margin-right: 0.95rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.todo_list .toggle:checked {
+    border-color: #5dc2af;
+    background: #fff;
+}
+
+.todo_list .toggle:checked::after {
+    content: '✔';
+    color: #5dc2af;
+    font-size: 1.15rem;
+    line-height: 1;
+}
+
+.todo_list li label {
+    flex-grow: 1;
+    line-height: 1.2;
+    padding: 0.95rem 0;
+    word-break: break-all;
+    transition: color 0.4s;
+    color: #4d4d4d;
+}
+
+.todo_list li.completed label {
+    color: #d9d9d9;
+    text-decoration: line-through;
+}
+
+.todo_list li .destroy {
+    display: none;
+    width: 2.5rem;
+    height: 2.5rem;
+    font-size: 1.90rem;
+    color: #cc9a9a;
+    background: none;
+    border: none;
+    cursor: pointer;
+    margin-left: 0.65rem;
+}
+
+.todo_list li .destroy:hover {
+    color: #af5b5e;
+}
+
+.todo_list li:hover .destroy {
+    display: block;
+}
+
+.footer {
+    color: #777;
+    padding: 10px 15px;
+    height: 20px;
+    text-align: center;
+    border-top: 1px solid #e6e6e6;
+    background: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 14px;
+    position: relative;
+    z-index: 1;
+    
+    /* Efectul de foi suprapuse*/
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2), 
+                0 8px 0 -3px #f6f6f6, 
+                0 9px 1px -3px rgba(0, 0, 0, 0.2), 
+                0 16px 0 -6px #f6f6f6, 
+                0 17px 2px -6px rgba(0, 0, 0, 0.2);
+}
+
+.todo_list li .edit {
+    display: none;
+}
+
+.todo_list li.editing .edit {
+    display: block;
+    width: calc(100% - 43px);
+    padding: 12px 16px;
+    margin: 0 0 0 43px;
+    font-size: 1.5rem;
+    font-family: inherit;
+    line-height: 1.2;
+    
+    border: none;
+    outline: none;
+    box-shadow: 0 0 2px 2px #cf7d7d, 0 2px 8px rgba(0, 0, 0, 0.08);
+
+    box-sizing: border-box;
+    position: relative;
+    z-index: 20;
+}
+
+.todo_list li.editing .view {
+    display: none;
+}
+
+.todo_list li.selected.editing {
+    border-color: transparent !important; 
+}
+
+.todo_count strong {
+    font-weight: 300;
+}
+
+.filters {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    gap: 0.30rem;
+}
+
+.filters li a {
+    color: inherit;
+    margin: 0.20rem;
+    padding: 0.20rem 0.45rem;
+    text-decoration: none;
+    border: 1px solid transparent;
+    border-radius: 0.20rem;
+    cursor: pointer;
+}
+
+.filters li a:hover {
+    border-color: rgba(175, 47, 47, 0.1);
+}
+
+.filters li a.selected {
+    border-color: rgba(175, 47, 47, 0.2);
+}
+
+.clear_completed {
+    background: none;
+    border: none;
+    color: inherit;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.clear_completed:hover {
+    text-decoration: underline;
+}
+
+.info {
+    margin-top: 4rem;
+    font-size: 0.75rem;
+    color: #bfbfbf;
+    text-shadow: 0 0.05rem 0 rgba(255, 255, 255, 0.5);
+    text-align: center;
+}
+
+.info p {
+    line-height: 1;
+    margin-bottom: 0.60rem;
+}
+
+@media screen and (max-width: 980px) {
+    
+    body {
+        display: block; 
+        padding: 0;
+    }
+
+    .sidebar {
+        display: none;
+    }
+
+    .main {
+        width: 100%;
+        padding: 30px 15px; 
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        align-items: center; 
+    }
+
+    .todoapp {
+        width: 100%;
+        max-width: 450px; 
+        margin: 0 auto;
+    }
+
+    .todoapp h1 {
+        font-size: 4rem; 
+        margin-bottom: 0.8rem;
+    }
+
+    .new_todo {
+        font-size: 1.2rem;
+        padding: 0.7rem 0.7rem 0.7rem 0; 
+    }
+
+    .header label {
+        padding: 0.5rem 1rem;
+    }
+
+    .todo_list li {
+        font-size: 1.2rem; 
+    }
+
+    .todo_list li .view {
+        min-height: 3rem; 
+    }
+
+    .todo_list .toggle {
+        height: 1.5rem; 
+        width: 1.5rem;
+        margin-right: 0.7rem;
+    }
+    
+    .todo_list .toggle:checked::after {
+        font-size: 0.9rem;
+    }
+
+    .footer {
+        padding: 8px 10px;
+        font-size: 12px; 
+    }
+    
+    .filters li a {
+        padding: 0.15rem 0.3rem; 
+    }
+    
+    .todo_list li.editing .edit {
+        width: calc(100% - 35px); 
+        margin-left: 35px;
+        font-size: 1.2rem;
+        padding: 8px;
+    }
+}
